@@ -1,0 +1,1 @@
+Node.js allows JavaScript to run outside the browser. It is built on Chrome's V8 engine and is widely used for backend development.

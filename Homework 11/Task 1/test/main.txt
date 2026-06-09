@@ -1,0 +1,1 @@
+JavaScript is a versatile language. It runs in the browser and on the server. Developers use it to build web apps, APIs, and tools.

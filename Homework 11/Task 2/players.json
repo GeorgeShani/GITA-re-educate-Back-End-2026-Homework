@@ -1,0 +1,44 @@
+[
+  {
+    "id": 1,
+    "firstName": "Khvicha",
+    "lastName": "Kvaratskhelia",
+    "nation": "georgia",
+    "position": "forward"
+  },
+  {
+    "id": 2,
+    "firstName": "Giorgi",
+    "lastName": "Mamardashvili",
+    "nation": "georgia",
+    "position": "goalkeeper"
+  },
+  {
+    "id": 3,
+    "firstName": "Luka",
+    "lastName": "Modrić",
+    "nation": "croatia",
+    "position": "midfielder"
+  },
+  {
+    "id": 4,
+    "firstName": "Joshua",
+    "lastName": "Kimmich",
+    "nation": "germany",
+    "position": "defender"
+  },
+  {
+    "id": 5,
+    "firstName": "Kevin",
+    "lastName": "De Bruyne",
+    "nation": "belgium",
+    "position": "midfielder"
+  },
+  {
+    "id": 6,
+    "firstName": "Erling",
+    "lastName": "Haaland",
+    "nation": "norway",
+    "position": "forward"
+  }
+]
