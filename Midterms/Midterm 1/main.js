@@ -88,6 +88,44 @@ program
   .action(async (options) => {
     let expenses = await readExpenses();
 
+    // Validation: asc and desc cannot be used together
+    if (options.asc && options.desc) {
+      console.log(
+        chalk.red('Validation Error: ') +
+        'Choose either --asc or --desc, not both.'
+      );
+      return;
+    }
+
+    // Validation: page
+    if (!Number.isInteger(options.page) || options.page < 1) {
+      console.log(
+        chalk.red('Validation Error: ') +
+        'Page must be a positive integer.'
+      );
+      return;
+    }
+
+    // Validation: limit
+    if (!Number.isInteger(options.limit) || options.limit < 1) {
+      console.log(
+        chalk.red('Validation Error: ') +
+        'Limit must be a positive integer.'
+      );
+      return;
+    }
+
+    // Validation: maximum limit
+    const MAX_LIMIT = 50;
+
+    if (options.limit > MAX_LIMIT) {
+      console.log(
+        chalk.red('Validation Error: ') +
+        `Limit cannot exceed ${MAX_LIMIT}.`
+      );
+      return;
+    }
+
     if (options.category) {
       expenses = expenses.filter(
         exp => exp.category === options.category.toLowerCase()
@@ -106,8 +144,8 @@ program
       );
     }
 
-    const page = Number(options.page) || 1;
-    const limit = Number(options.limit) || 5;
+    const page = options.page;
+    const limit = options.limit;
 
     const startIndex = (page - 1) * limit;
     const endIndex = startIndex + limit;
@@ -115,8 +153,19 @@ program
     const paginatedExpenses = expenses.slice(startIndex, endIndex);
     const totalPages = Math.ceil(expenses.length / limit);
 
+    // Validation: page out of range
+    if (page > totalPages && expenses.length > 0) {
+      console.log(
+        chalk.red('Validation Error: ') +
+        `Page ${page} does not exist. Total pages: ${totalPages}.`
+      );
+      return;
+    }
+
     if (!paginatedExpenses.length) {
-      console.log(chalk.yellow('No expenses found for the given criteria.'));
+      console.log(
+        chalk.yellow('No expenses found for the given criteria.')
+      );
       return;
     }
 
